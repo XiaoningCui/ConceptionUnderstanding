@@ -1,0 +1,65 @@
+Word Representation and Word Embedding
+1.	Introduction
+Before solving the concrete tasks in NLP through deep learning technic, including sentiment analysis, named entity recognition, machine translation, text classification, text generation and so on, people should know how to represent different levels of linguistic elements (word level, syntactic level, document level… ), which transform natural language into the data type that neural networks can deal with.
+In some domains, like audio or image processing, the original data all have their own way of representation. In NLP, each word is projected into a vector for calculation in neural networks.
+The representation of natural language is far beyond important since natural language is a kind of so abstract stuff that two linguistic elements having the same meaning may appear very differently.
+2.	Simple Representation
+One-hot representation
+E.g.
+APPLE = [1 0 0 0 0]
+DOG = [0 1 0 0 0]
+CAT = [0 0 1 0 0]
+WALK = [0 0 0 1 0]
+RUN = [0 0 0 0 1]
+
+Pros: easily implementing;
+Cons: very high dimension (very sparse); orthogonal/ independent relationship between each word (fail to capture semantic information)
+
+Distributed representation
+Main idea: A word is characterized by the company it keeps. – J.R. Firth (1957)
+
+Count-based
+1.	Use slide window with size of 2m (wi-m, …, wi-1, wi+1, …, wi+m) to cover the context of the given center word.
+ 
+  
+2.	TF-IDF
+
+
+台湾大学李宏毅讲Word Embedding
+One-hot representation (1-of-N Encoding)
+Word class
+Pros: Reflecting categorization. Clustering is not enough because of lack of information.
+Cons: The relationships among classes are not embodied.
+Word Embedding is unsupervised approach.
+A lot of text, being input, will be feed in a neural network which outputs word vectors.
+A word can be understood by its company it keeps (context).
+
+Count based
+If the words wi and wj frequently co-occur, V(wi) and V(wj) would be close to each other.
+E.g. GloVe
+
+Prediction based
+A neural network predict the probability of wi given 1-of-N encoding of wi-1.
+ 
+如上图，由于训练语料中有“蔡英文宣誓就职”和“马英九宣誓就职”这两句话。所以我们希望神经网络的输入为“蔡英文”或“马英九”的vector时，“宣誓就职”的vector都为概率最高的向量。这就需要通过weight的转换将不同的输入vector在进入hidden layer之前project到差不多同样的空间，这样能保证output相同。
+
+ 
+往往预测wi需要多个词（e.g. wi-10, …, wi-1）
+1.	词的权重要保证相等，这样词的顺序就不重要了；
+2.	而且能够减少参数量
+如下：
+ 
+The embedding of a word is the product of 1-of-N encoding of the word with w.
+Then how to share parameters
+ 
+Variation of Prediction-based model
+CBOW: predict word given context
+Skip-gram: predict context given word
+
+Why CBOW and Skip-gram are not deep neural networks?
+Mikolov said
+过去有人做过word vector的工作，也有用deep的模型，但是他就想用shallow的去做，这样就可以减少运算量，跑大量的语料。（前提是Mikolov是一个超牛的工程师，自己有很多工程上的技巧，你做不出他的performance，而用他的toolkit就可以）
+ 
+Document embedding中Bag of word的negative
+ 
+Word embedding can reduce dimension of input data and capture contextual semantics of words.
