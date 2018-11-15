@@ -20,8 +20,7 @@ Main idea: A word is characterized by the company it keeps. – J.R. Firth (1957
 
 Count-based
 1.	Use slide window with size of 2m (wi-m, …, wi-1, wi+1, …, wi+m) to cover the context of the given center word.
- 
-  
+
 2.	TF-IDF
 
 
