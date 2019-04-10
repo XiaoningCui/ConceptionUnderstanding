@@ -12,7 +12,8 @@
 # Logistic Regression
 # Naive Bayes  
 原理基于贝叶斯公式  
-$P(H|X)=\frac{P(X|H)P(H)}{P(X)}$
+$P(H|X)=\frac{P(X|H)P(H)}{P(X)}$  
+![P(H|X)=P(X|H)P(H)/P(X)](Imgs/Posteriori_Probability.png)  
 * where $P(H|X)$ is the posteriori probability
 * where $P(H)$ is the prior probability
 * where $P(X|H)$ is the likelihood
@@ -27,20 +28,26 @@ $P(H|X)=\frac{P(X|H)P(H)}{P(X)}$
 ## ID3树和Information Gain
 1. 划分数据集D需要的信息（D的信息熵）为Expected Information  
    $Info(D)=-\sum_{i=1}^mp_i\log_2(p_i)$  
+   ![Info(D)](Imgs/Info(D).png)  
    $p_i$ is the relative frequency of class i in D
 2. 计算出用属性A划分D的Information Needed  
-   $Info_A(D)=\sum_{j=1}^v\frac{|D_j|}{|D|}\times Info_A(D_j)$
+   $Info_A(D)=\sum_{j=1}^v\frac{|D_j|}{|D|}\times Info_A(D_j)$  
+   ![Info_A(D)](Imgs/Info_A(D).png)  
 3. Information Gain = Expected Information - Information Needed  
-   $Gain(A)=Info(D)-Info_A(D)$
+   $Gain(A)=Info(D)-Info_A(D)$  
+   ![Gain(A)](Imgs/Gain(A).png)  
 * 树需要作出获得最高信息增益（即熵最低，亦即纯度最高）的决定
 ## CART树和Gini Index
 1. 如果数据集D被分成N类，则D的总gini index为：  
    $gini(D)=1-\sum_{i=1}^{N}p_i^2$  
+   ![Gini(D)](Imgs/Gini(D).png)  
    $p_i$ is the relative frequency of class i in D
 2. 如果D被属性A划分为$D_1$和$D_2$，则A的gini index为：  
    $gini_A(D)=\frac{|D_1|}{|D|}gini(D_1)+\frac{|D_2|}{|D|}gini(D_2)$  
+   ![Gini_A(D)](Imgs/Gini_A(D).png)  
 3. A带来的gini变化，即Reduction in Impurity  
-   $\Delta gini(A)=gini(D)-gini_A(D)$ 
+   $\Delta gini(A)=gini(D)-gini_A(D)$  
+   ![Delta_Gini(A)](Imgs/Delta_Gini(A).png)  
 * 树需要作出最小化基尼系数、或最大化$\Delta gini$的决定。
 # Random Forest
 ## Characteristic
